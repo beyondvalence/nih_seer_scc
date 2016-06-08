@@ -1,0 +1,18 @@
+[Field Links]
+Salivary=Site recode ICD-O-3/WHO 2008~Behavior recode for analysis
+
+[MergedVar=Salivary]
+1={main.Site recode ICD-O-3/WHO 2008} = 3~AND {main.Behavior recode for analysis} = 3
+
+[FormatDataType]
+Salivary=I
+
+[FormatEditableByUser]
+Salivary=true
+
+[FormatCaseSensitivity]
+Salivary=true
+
+[Format=Salivary]
+1=Salivary~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Salivary Gland'~AND {Site and Morphology.Behavior recode for analysis} = 'Malignant'
+
