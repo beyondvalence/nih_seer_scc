@@ -6,21 +6,31 @@
 *set memory 1g
 *set more off
 ****************************************************************
-** IOWA
+** ALL States and Counties except Alaska and Hawaii
 ** DB18_HL_HIV_IA
 ** HL codes for Iowa, which does not ever exclude HIV cases
 ****************************************************************
 
-describe using "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIV_IA_W"
+import delimited "C:\REB\SEER_SCC\Data\scc_county_counts.csv", delimiter(comma) rowrange(1) clear 
+save "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", replace
 
-use "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIV_IA_W", clear
-append using "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIV_IA_H" 
-append using "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIV_IA_B" 
+* if files too large or extra pages, use below append:
+* append using "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIV_IA_H" 
+* append using "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIV_IA_B" 
 
-save DB18_HL_HIV_IA, replace
-describe using DB18_HL_HIV_IA
-tabstat counthl pophl, stat(sum)
-*drop fips state registry SEER9 SEER11 SEER13 SEER17 SEER18 
+* rename variable names
+rename v1 county
+rename v2 year_dx
+rename v3 sex
+rename v4 age_dx
+rename v5 race
+
+save "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", replace
+describe
+
+* tabstat all_scc pop, stat(sum)
+* drop fips state registry SEER9 SEER11 SEER13 SEER17 SEER18 
+
 gen fips = regexs(0) if(regexm(county, "[0-9][0-9][0-9][0-9][0-9]"))
 
 *Drop cumulative registry totals so no overlap in cases
@@ -29,7 +39,9 @@ drop if fips ==""
 
 *Drop unknowns
 tab county if fips =="09999" | fips =="49999" | fips =="35999" | fips =="34999"   
+tabstat all_scc resp_scc oral_scc pop, stat(sum)
 drop if fips =="09999" | fips =="49999" | fips =="35999" | fips =="34999"    
+tabstat all_scc resp_scc oral_scc pop, stat(sum)
 
 *Make state variable
 generate splitcounty = strpos(county,":")
@@ -41,72 +53,31 @@ drop splitcounty
 replace state=trim(state)
 tab state, missing
 
-gen racen=1 if race=="W"
-replace racen=2 if race=="H"
-replace racen=3 if race=="B"
+gen racen=1 if race=="nhw" /* non Hispanic white */
+replace racen=2 if race=="hw" /*  Hispanic white */
+replace racen=3 if race=="b" /* black */
 tab race racen
 
-save DB18_HL_HIV_IA, replace
-tabstat counthl pophl, stat(sum)
-describe using DB18_HL_HIV_IA
+save "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", replace
+tabstat all_scc resp_scc oral_scc pop, stat(sum)
+tab fips
+display r(r)
 
-*5940 obsrevations, 827  cases
-******************************************************
-** Custom datatset without HIV cases (excludes Iowa)
-** DB18_HL_HIVFree_NoIA
-** HL codes that exclude HIV cases, Iowa not included
-******************************************************
-describe using "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIVfree_NoIA_W"
+*tabstat all_scc , stat(sum) by(fips)
 
-use "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIVfree_NoIA_W", clear
-append using "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIVfree_NoIA_H" 
-append using "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIVfree_NoIA_B" 
-save DB18_HL_HIVFree_NoIA, replace
+* all SCC: 344115    resp SCC: 155012     oral SCC: 92189
+********************************************************************************
 
-describe using DB18_HL_HIVFree_NoIA
-tabstat counthl pophl, stat(sum)
-*drop fips state registry SEER9 SEER11 SEER13 SEER17 SEER18 
-gen fips = regexs(0) if(regexm(county, "[0-9][0-9][0-9][0-9][0-9]"))
 
-*Drop cumulative registry totals so no overlap in cases
-tab county if fips==""
-drop if fips =="" 
 
-*Drop unknowns
-tab county if fips =="09999" | fips =="49999" | fips =="35999" | fips =="34999"   
-drop if fips =="09999" | fips =="49999" | fips =="35999" | fips =="34999"    
 
-*Drop Alaska Natives and Hawaii
-tab county if fips =="02900" | fips =="15001" | fips =="15003" | fips =="15005" | fips =="15007" | fips =="15009"
-drop if fips =="02900" 
-drop if fips =="15001" | fips =="15003" | fips =="15005" | fips =="15007" | fips =="15009"
 
-*Make state variable
-generate splitcounty = strpos(county,":")
-tab county if splitcounty == 0
-generate str1 state = ""
-replace state = substr(county,1,splitcounty - 1)
-tab state
-drop splitcounty
-replace state=trim(state)
-tab state, missing
+********************************************************************************
+* 1. All registries except Iowa (HIV free) *************************************
+********************************************************************************
 
-gen racen=1 if race=="W"
-replace racen=2 if race=="H"
-replace racen=3 if race=="B"
-tab race racen
-
-save DB18_HL_HIVFree_NoIA, replace
-tabstat counthl pophl, stat(sum)
-describe using DB18_HL_HIVFree_NoIA
-
-*30,420 observations 19194 cases
-*************************************************************************
-* 1. All registries except Iowa (HIV free) ******************************
-*************************************************************************
-
-use DB18_HL_HIVFree_NoIA, clear
-sort state fips racen sex agecat dxyr5
+use "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", clear
+sort state fips racen sex age_dx year_dx
 
 *Make registry variable
 generate registry=0
@@ -119,6 +90,7 @@ replace registry = 6 if state == "KY"
 replace registry = 8 if state == "UT"
 replace registry = 14 if state == "LA"
 replace registry = 16 if state == "NM"
+
 *Atlanta (Metropolitan) Registry;
 replace registry = 9 if inlist(fips,"13063","13067","13089","13121","13135")
 *Rural Georgia Registry;
@@ -140,11 +112,12 @@ drop if registry==0
 tab registry
 
 *Labels
-*label define registryl 1 "WA" 2 "MI" 3 "CT" 4 "IA" 5 "NJ" 6 "KY" 7 "SanFrancisco-Oakland" 8 "UT" 9 "Atlanta" 10 "GreaterCA" 11 "SanJose-Monterey" 12 "RuralGA" 13 "GreaterGA" 14"LA" 15 "Los Angeles" 16 "NM"
+label define registryl 1 "WA" 2 "MI" 3 "CT" 4 "IA" 5 "NJ" 6 "KY" 7 "SanFrancisco-Oakland" 8 "UT" 9 "Atlanta" 10 "GreaterCA" 11 "SanJose-Monterey" 12 "RuralGA" 13 "GreaterGA" 14"LA" 15 "Los Angeles" 16 "NM"
 label values registry registryl
 
-*label define racel 1 "WHB"  2 "White" 3 "Hispanic" 4 "Black"
+label define racel 1 "White" 2 "Hispanic" 3 "Black"
 label values racen racel
+
 
 * SEER9  registries are Atlanta, Connecticut, Detroit, Hawaii, Iowa, New Mexico, San Francisco-Oakland, Seattle-Puget Sound, and Utah. 
 generate SEER9=0
@@ -166,61 +139,63 @@ replace SEER17=1 if SEER13==1 | registry==10 | registry==6 | registry==14 | regi
 generate SEER18=0
 replace SEER18=1 if SEER17==1 | registry==13
 
-save DB18_HL_HIVFree_NoIA, replace
-tabstat counthl pophl, stat(sum)
+save "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", replace
+tabstat all_scc resp_scc oral_scc pop, stat(sum)
 
 *************************************
 ** Link in ZARIA and weather data ***
 *************************************
 
-use "E:\NCI REB\UV and HL\Data\Stata\nci_uv-county.dta", clear
+use "C:\REB\SEER_SCC\Data\nci_uv-county.dta", clear
 sort fips
 save Zaria, replace
 
-use DB18_HL_HIVFree_NoIA, clear
+use "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", clear
 sort fips
 save SEER, replace
 
-compress counthl pophl countchl popchl countchlns popchlns countchllr popchllr countchlmcld popchlmcld countchlnos popchlnos countnlphl popnlphl
+compress all_scc all_non resp_scc resp_non oral_scc oral_non pop racen registry SEER9 SEER11 SEER13 SEER17 SEER18
+describe
 
 merge m:1 fips using Zaria
 tab STATE_ABR if _merge==2
-drop if _merge==2
+drop if _merge==2 
+drop _merge statename STATE_ABR county
 tab state 
 
 replace sex = substr(sex, indexnot(sex, " "), .) 
 generate male=0
-replace male=1 if sex=="Male"
+replace male=1 if sex=="male"
 tab sex male
  
-tab agecat
-generate agecatn=0
-replace agecatn=1 if agecat=="0-14 years"
-replace agecatn=2 if agecat=="15-24 years"
-replace agecatn=3 if agecat=="25-44 years"
-replace agecatn=4 if agecat=="45-64 years"
-replace agecatn=5 if agecat=="65-84 years"
-tab agecat agecatn
+tab age_dx
+generate agecat=0
+replace agecat=1 if age_dx=="0-44"
+replace agecat=2 if age_dx=="45-64"
+replace agecat=3 if age_dx=="65+"
+
+label define agecatl 1 "0-44" 2 "45-64" 3 "65+"
+label values agecat agecatl
+
+tab age_dx agecat
 
 
-generate year305=uvr
-xtile qyear305 = year305, nq(5) 
+generate year305 = uvr
+xtile qyear305 = uvr, nq(5) 
 
-sum year305 if qyear305==1
-sum year305 if qyear305==2
-sum year305 if qyear305==3
-sum year305 if qyear305==4
-sum year305 if qyear305==5
+sum uvr if qyear305==1
+sum uvr if qyear305==2
+sum uvr if qyear305==3
+sum uvr if qyear305==4
+sum uvr if qyear305==5
 
-mean year305 if  qyear305==1
-mean year305 if  qyear305==2
-mean year305 if  qyear305==3
-mean year305 if  qyear305==4
-mean year305 if  qyear305==5
+mean uvr if  qyear305==1
+mean uvr if  qyear305==2
+mean uvr if  qyear305==3
+mean uvr if  qyear305==4
+mean uvr if  qyear305==5
 
-gen pop= pophl
-
-save DB18_HL_HIVFree_NoIA_UVR_Zaria, replace
+save "C:\REB\SEER_SCC\Data\scc_county_counts1_uvr.dta", replace
 
 *drop objectid Join_Count TARGET_FID Join_Count_1 FIPS_OLD 
 *drop Jan305 Feb305 Mar305 Apr305 May305 Jun305 Jul305 Aug305 Sep305 Oct305 Nov305 Dec305 
@@ -238,22 +213,22 @@ save DB18_HL_HIVFree_NoIA_UVR_Zaria, replace
 
 *Collapse data by UV quintiles (based on county), maintaining registry, race, sex, age group, and year of dx 
 
-use DB18_HL_HIVFree_NoIA_UVR_Zaria, clear
-tabstat counthl pophl, stat(sum)
-sort  registry racen male agecat dxyr5 qyear305
+use "C:\REB\SEER_SCC\Data\scc_county_counts1_uvr.dta", clear
+tabstat all_scc all_non, stat(sum)
+sort  registry racen male agecat year_dx qyear305
 
-collapse (sum) counthl pophl countchl countchlns countchllr countchlmcld countchlnos countnlphl (mean) year305, by(registry racen male agecat dxyr5 qyear305)
+collapse (sum) all_scc all_non resp_scc resp_non oral_scc oral_non pop (mean) year305, by(registry racen male agecat year_dx qyear305)
 gen lnpop=ln(pop)
 
-save DB18_HL_HIVFree_NoIA_UVRc_Zaria, replace
-save "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIVFree_NoIA_UVRc_Zaria.dta", replace
+save "C:\REB\SEER_SCC\Data\scc_county_counts1_uvr.dta", replace
 
 tab registry qyear305
-tabstat counthl pophl, stat(sum)
-sort qyear305
+tabstat all_scc all_non, stat(sum)
+sort qyear305 registry racen male agecat year_dx
 by qyear305:tabstat year305, stat(mean)
+by qyear305:tabstat all_scc resp_scc oral_scc, stat(sum)
 
-*************************************************************************
+/*************************************************************************
 * 2. All registries except Iowa (HIV free) + Iowa ***********************
 *************************************************************************
 
