@@ -60,7 +60,7 @@ tab race racen
 
 save "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", replace
 tabstat all_scc resp_scc oral_scc pop, stat(sum)
-tab fips
+*tab fips
 display r(r)
 
 *tabstat all_scc , stat(sum) by(fips)
@@ -109,7 +109,6 @@ replace registry = 10 if state=="CA" & registry != 7 & registry != 11 & registry
 
 tab registry
 drop if registry==0
-tab registry
 
 *Labels
 label define registryl 1 "WA" 2 "MI" 3 "CT" 4 "IA" 5 "NJ" 6 "KY" 7 "SanFrancisco-Oakland" 8 "UT" 9 "Atlanta" 10 "GreaterCA" 11 "SanJose-Monterey" 12 "RuralGA" 13 "GreaterGA" 14"LA" 15 "Los Angeles" 16 "NM"
