@@ -1,22 +1,88 @@
 [FormatDataType]
 ICDO-3_grouping48=I
+agecat=I
+ICDO-3new=I
+race1=I
+sex_new=I
+year=I
 
 [FormatEditableByUser]
 ICDO-3_grouping48=true
+agecat=true
+ICDO-3new=true
+race1=true
+sex_new=true
+year=true
 
 [FormatCaseSensitivity]
 ICDO-3_grouping48=true
+agecat=true
+ICDO-3new=true
+race1=true
+sex_new=true
+year=true
 
 [Field Links]
 ICDO-3_grouping48=Site recode ICD-O-3/WHO 2008~
+agecat=Age recode with <1 year olds~
+race1=Origin recode NHIA (Hispanic, Non-Hisp)~Race recode (W, B, AI, API)
+sex_new=Sex~
+year=Year of diagnosis~
+ICDO-3new=Site recode ICD-O-3/WHO 2008~ICD-O-3 Hist/behav, malignant
 
 [MergedVar=ICDO-3_grouping48]
-1={main.Site recode ICD-O-3/WHO 2008} = 1-13,15-23,25-27,29-66,68-69,71-78,80,83,85-89
+1={main.Site recode ICD-O-3/WHO 2008} != 44-45,68-69,71-78,80,83,85,87-89
 2={main.Site recode ICD-O-3/WHO 2008} = 37-41
 3={main.Site recode ICD-O-3/WHO 2008} = 1-10
 
 [Format=ICDO-3_grouping48]
-1=1. All sites~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = 'All Sites'
+1=1. All sites~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'
 2=2. Respiratory system~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Respiratory System'
 3=4. Oral cavity and pharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Oral Cavity and Pharynx'
+
+[MergedVar=agecat]
+1={main.Age recode with <1 year olds} = 0-10
+2={main.Age recode with <1 year olds} = 10-13
+3={main.Age recode with <1 year olds} = 14-18
+
+[Format=agecat]
+1=0-44~{Age at Diagnosis.Age recode with <1 year olds} = '00 years','01-04 years','05-09 years','10-14 years','15-19 years','20-24 years','25-29 years','30-34 years','35-39 years','40-44 years','45-49 years'
+2=45-64~{Age at Diagnosis.Age recode with <1 year olds} = '45-49 years','50-54 years','55-59 years','60-64 years'
+3=65+~{Age at Diagnosis.Age recode with <1 year olds} = '65-69 years','70-74 years','75-79 years','80-84 years','85+ years'
+
+[MergedVar=race1]
+1={main.Origin recode NHIA (Hispanic, Non-Hisp)} = 0~AND {main.Race recode (W, B, AI, API)} = 1
+2={main.Origin recode NHIA (Hispanic, Non-Hisp)} = 1~AND {main.Race recode (W, B, AI, API)} = 1
+3={main.Race recode (W, B, AI, API)} = 2
+
+[Format=race1]
+1=nhw~{Race, Sex, Year Dx, Registry, County.Origin recode NHIA (Hispanic, Non-Hisp)} = 'Non-Spanish-Hispanic-Latino'~AND {Race, Sex, Year Dx, Registry, County.Race recode (W, B, AI, API)} = 'White'
+2=hw~{Race, Sex, Year Dx, Registry, County.Origin recode NHIA (Hispanic, Non-Hisp)} = 'Spanish-Hispanic-Latino'~AND {Race, Sex, Year Dx, Registry, County.Race recode (W, B, AI, API)} = 'White'
+3=b~{Race, Sex, Year Dx, Registry, County.Race recode (W, B, AI, API)} = 'Black'
+
+[MergedVar=sex_new]
+1={main.Sex} = 1
+2={main.Sex} = 2
+
+[Format=sex_new]
+1=male~{Race, Sex, Year Dx, Registry, County.Sex} = '  Male'
+2=female~{Race, Sex, Year Dx, Registry, County.Sex} = '  Female'
+
+[MergedVar=year]
+1={main.Year of diagnosis} = 200-204
+2={main.Year of diagnosis} = 205-209
+3={main.Year of diagnosis} = 210-213
+
+[Format=year]
+1=2000-2004~{Race, Sex, Year Dx, Registry, County.Year of diagnosis} = '2000','2001','2002','2003','2004'
+2=2005-2009~{Race, Sex, Year Dx, Registry, County.Year of diagnosis} = '2005','2006','2007','2008','2009'
+3=2010-2013~{Race, Sex, Year Dx, Registry, County.Year of diagnosis} = '2010','2011','2012','2013'
+
+[MergedVar=ICDO-3new]
+1={main.Site recode ICD-O-3/WHO 2008} != 44-45,68-69,71-78,80,83,85,87-89~AND {main.ICD-O-3 Hist/behav, malignant} = 283,287,291,295,299,303,307,311,315
+2={main.Site recode ICD-O-3/WHO 2008} != 44-45,68-69,71-78,80,83,85,87-89~AND {main.ICD-O-3 Hist/behav, malignant} != 283,287,291,295,299,303,307,311,315
+
+[Format=ICDO-3new]
+1=all_scc~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'~AND {Site and Morphology.ICD-O-3 Hist/behav, malignant} = '8070/3: Squamous cell carcinoma, NOS','8071/3: Squamous cell carcinoma, keratinizing, NOS','8072/3: Squamous cell carcinoma, large cell, nonkeratinizing, NOS','8073/3: Squamous cell carcinoma, small cell, nonkeratinizing','8074/3: Squamous cell carcinoma, spindle cell','8075/3: Squamous cell carcinoma, adenoid','8076/3: Squamous cell carcinoma, micro-invasive','8077/3: Squamous cell carcinoma, grade III','8078/3: Squamous cell carcinoma with horn formation'
+2=all_non~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'~AND {Site and Morphology.ICD-O-3 Hist/behav, malignant} != '8070/3: Squamous cell carcinoma, NOS','8071/3: Squamous cell carcinoma, keratinizing, NOS','8072/3: Squamous cell carcinoma, large cell, nonkeratinizing, NOS','8073/3: Squamous cell carcinoma, small cell, nonkeratinizing','8074/3: Squamous cell carcinoma, spindle cell','8075/3: Squamous cell carcinoma, adenoid','8076/3: Squamous cell carcinoma, micro-invasive','8077/3: Squamous cell carcinoma, grade III','8078/3: Squamous cell carcinoma with horn formation'
 
