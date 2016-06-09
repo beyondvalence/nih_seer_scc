@@ -1,0 +1,22 @@
+[FormatDataType]
+ICDO-3_grouping48=I
+
+[FormatEditableByUser]
+ICDO-3_grouping48=true
+
+[FormatCaseSensitivity]
+ICDO-3_grouping48=true
+
+[Field Links]
+ICDO-3_grouping48=Site recode ICD-O-3/WHO 2008~
+
+[MergedVar=ICDO-3_grouping48]
+1={main.Site recode ICD-O-3/WHO 2008} = 1-13,15-23,25-27,29-66,68-69,71-78,80,83,85-89
+2={main.Site recode ICD-O-3/WHO 2008} = 37-41
+3={main.Site recode ICD-O-3/WHO 2008} = 1-10
+
+[Format=ICDO-3_grouping48]
+1=1. All sites~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = 'All Sites'
+2=2. Respiratory system~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Respiratory System'
+3=4. Oral cavity and pharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Oral Cavity and Pharynx'
+
