@@ -5,34 +5,39 @@
 *** Updated 20160610FRI ***
 ***************************
 *set memory 1g
-*set more off
+set more off
 ****************************************************************
 ** ALL States and Counties except Alaska and Hawaii
 ** DB18_HL_HIV_IA
 ** HL codes for Iowa, which does not ever exclude HIV cases
 ****************************************************************
 
-import delimited "C:\REB\SEER_SCC\Data\20160610FRI\scc_county_race1_counts.csv", delimiter(comma) rowrange(1) clear 
-save "C:\REB\SEER_SCC\Data\scc_county_race1_counts.dta", replace
-
-import delimited "C:\REB\SEER_SCC\Data\20160610FRI\scc_county_race2_counts.csv", delimiter(comma) rowrange(1) clear 
-save "C:\REB\SEER_SCC\Data\scc_county_race2_counts.dta", replace
-
-import delimited "C:\REB\SEER_SCC\Data\20160610FRI\scc_county_race3_counts.csv", delimiter(comma) rowrange(1) clear 
-save "C:\REB\SEER_SCC\Data\scc_county_race3_counts.dta", replace
+import delimited "C:\REB\SEER_SCC\Data\20160610FRI\scc_county_counts.csv", delimiter(comma) rowrange(1) clear 
+save "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", replace
 
 * if files too large or extra pages, use below append:
-* append using "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIV_IA_H" 
-* append using "E:\NCI REB\UV and HL\Data\Stata\DB18_HL_HIV_IA_B" 
+*append using "C:\REB\SEER_SCC\Data\scc_county_race1_counts.dta" 
+*append using "C:\REB\SEER_SCC\Data\scc_county_race2_counts.dta" 
 
 * rename variable names
 rename v1 county
 rename v2 year_dx
 rename v3 sex
 rename v4 age_dx
-rename v5 race
+rename female_scc 	fema_scc
+rename female_non 	fema_non
+rename digest_scc 	dige_scc
+rename digest_non 	dige_non
+rename urinary_scc 	urin_scc
+rename urinary_non 	urin_non
+rename breast_scc 	brea_scc
+rename breast_non 	brea_non
+rename stissue_scc 	tiss_scc
+rename stissue_non 	tiss_non
+rename bonej_scc 	bone_scc
+rename bonej_non 	bone_non
 
-save "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", replace
+save "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", replace
 describe
 
 * tabstat all_scc pop, stat(sum)
@@ -46,33 +51,36 @@ drop if fips ==""
 
 *Drop unknowns
 tab county if fips =="09999" | fips =="49999" | fips =="35999" | fips =="34999"   
-tabstat all_scc resp_scc oral_scc pop, stat(sum)
 drop if fips =="09999" | fips =="49999" | fips =="35999" | fips =="34999"    
-tabstat all_scc resp_scc oral_scc pop, stat(sum)
+tabstat all_scc resp_scc oral_scc fema_scc dige_scc misc_scc male_scc urin_scc eye_scc brea_scc endo_scc tiss_scc bone_scc pop, stat(sum)
 
 *Make state variable
 generate splitcounty = strpos(county,":")
 tab county if splitcounty == 0
 generate str1 state = ""
-replace state = substr(county,1,splitcounty - 1)
+replace state = trim(substr(county,1,splitcounty - 1))
 tab state
 drop splitcounty
-replace state=trim(state)
-tab state, missing
 
-gen racen=1 if race=="nhw" /* non Hispanic white */
-replace racen=2 if race=="hw" /*  Hispanic white */
-replace racen=3 if race=="b" /* black */
-tab race racen
+* already have racen variable due to seerstat page by race
+*gen racen=1 if race=="nhw" /* non Hispanic white */
+*replace racen=2 if race=="hw" /*  Hispanic white */
+*replace racen=3 if race=="b" /* black */
+*tab race racen
 
-save "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", replace
-tabstat all_scc resp_scc oral_scc pop, stat(sum)
-*tab fips
-display r(r)
+save "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", replace
+tab fips
+display r(r) 
+** 607 counties
 
 *tabstat all_scc , stat(sum) by(fips)
 
-* all SCC: 344115    resp SCC: 155012     oral SCC: 92189
+** 20160610FRI WTL
+** all scc: 344115	
+* resp scc: 155012	oral scc: 92189		fema scc: 45169	
+* dige scc: 31894	misc scc: 11169		male scc: 3546	
+* urin scc: 3261	eye  scc: 887		brea scc: 389
+* endo scc: 251		tiss scc: 209		bone scc: 137
 ********************************************************************************
 
 
@@ -83,7 +91,7 @@ display r(r)
 * 1. All registries except Iowa (HIV free) *************************************
 ********************************************************************************
 
-use "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", clear
+use "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", clear
 sort state fips racen sex age_dx year_dx
 
 *Make registry variable
@@ -145,8 +153,7 @@ replace SEER17=1 if SEER13==1 | registry==10 | registry==6 | registry==14 | regi
 generate SEER18=0
 replace SEER18=1 if SEER17==1 | registry==13
 
-save "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", replace
-tabstat all_scc resp_scc oral_scc pop, stat(sum)
+save "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", replace
 
 *************************************
 ** Link in ZARIA and weather data ***
@@ -156,11 +163,14 @@ use "C:\REB\SEER_SCC\Data\nci_uv-county.dta", clear
 sort fips
 save Zaria, replace
 
-use "C:\REB\SEER_SCC\Data\scc_county_counts1.dta", clear
+use "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", clear
 sort fips
 save SEER, replace
 
-compress all_scc all_non resp_scc resp_non oral_scc oral_non pop racen registry SEER9 SEER11 SEER13 SEER17 SEER18
+compress all_scc all_non resp_scc resp_non oral_scc oral_non fema_scc fema_non 	///
+dige_scc dige_non misc_scc misc_non male_scc male_non urin_scc urin_non eye_scc ///
+eye_non brea_scc brea_non endo_scc endo_non tiss_scc tiss_non bone_scc bone_non ///
+pop racen registry SEER9 SEER11 SEER13 SEER17 SEER18
 describe
 
 merge m:1 fips using Zaria
@@ -201,7 +211,7 @@ mean uvr if  qyear305==3
 mean uvr if  qyear305==4
 mean uvr if  qyear305==5
 
-save "C:\REB\SEER_SCC\Data\scc_county_counts1_uvr.dta", replace
+save "C:\REB\SEER_SCC\Data\scc_county_counts_system_uvr.dta", replace
 
 *drop objectid Join_Count TARGET_FID Join_Count_1 FIPS_OLD 
 *drop Jan305 Feb305 Mar305 Apr305 May305 Jun305 Jul305 Aug305 Sep305 Oct305 Nov305 Dec305 
@@ -219,20 +229,24 @@ save "C:\REB\SEER_SCC\Data\scc_county_counts1_uvr.dta", replace
 
 *Collapse data by UV quintiles (based on county), maintaining registry, race, sex, age group, and year of dx 
 
-use "C:\REB\SEER_SCC\Data\scc_county_counts1_uvr.dta", clear
-tabstat all_scc all_non, stat(sum)
+use "C:\REB\SEER_SCC\Data\scc_county_counts_system_uvr.dta", clear
 sort  registry racen male agecat year_dx qyear305
 
-collapse (sum) all_scc all_non resp_scc resp_non oral_scc oral_non pop (mean) year305, by(registry racen male agecat year_dx qyear305)
+collapse (sum) all_scc all_non resp_scc resp_non oral_scc oral_non fema_scc fema_non 	///
+dige_scc dige_non misc_scc misc_non male_scc male_non urin_scc urin_non eye_scc ///
+eye_non brea_scc brea_non endo_scc endo_non tiss_scc tiss_non bone_scc bone_non ///
+pop ///
+(mean) year305, by(registry racen male agecat year_dx qyear305)
+
 gen lnpop=ln(pop)
 
-save "C:\REB\SEER_SCC\Data\scc_county_counts1_uvr.dta", replace
+save "C:\REB\SEER_SCC\Data\scc_county_counts_system_uvr.dta", replace
 
 tab registry qyear305
 tabstat all_scc all_non, stat(sum)
 sort qyear305 registry racen male agecat year_dx
 by qyear305:tabstat year305, stat(mean)
-by qyear305:tabstat all_scc resp_scc oral_scc, stat(sum)
+by qyear305:tabstat all_scc resp_scc oral_scc fema_scc dige_scc misc_scc male_scc urin_scc eye_scc brea_scc endo_scc tiss_scc bone_scc pop, stat(sum)
 
 /*************************************************************************
 * 2. All registries except Iowa (HIV free) + Iowa ***********************
