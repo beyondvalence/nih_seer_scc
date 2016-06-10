@@ -90,10 +90,8 @@ year=Year of diagnosis~
 ICDO-3new=Site recode ICD-O-3/WHO 2008~ICD-O-3 Hist/behav, malignant
 State-county-noAK-HI=State-county
 ICD-O-3/WHO -skinleuklymph=Site recode ICD-O-3/WHO 2008
-ICDO-3_grouping14=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping20=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping01=Site recode ICD-O-3/WHO 2008~
-ICDO-3_grouping07=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping22=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping32=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping37=Site recode ICD-O-3/WHO 2008~
@@ -104,6 +102,8 @@ ICDO-3_grouping48=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping04=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping02=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping05=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping07=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping14=Site recode ICD-O-3/WHO 2008~
 
 [MergedVar=agecat]
 1={main.Age recode with <1 year olds} = 0-10
@@ -838,12 +838,6 @@ ICDO-3_grouping05=Site recode ICD-O-3/WHO 2008~
 66="    Other Endocrine including Thymus"
 86="  Miscellaneous"
 
-[MergedVar=ICDO-3_grouping14]
-1={main.Site recode ICD-O-3/WHO 2008} = 86
-
-[Format=ICDO-3_grouping14]
-1=14. Misc~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Miscellaneous'
-
 [MergedVar=ICDO-3_grouping20]
 1={main.Site recode ICD-O-3/WHO 2008} = 54-57
 
@@ -855,12 +849,6 @@ ICDO-3_grouping05=Site recode ICD-O-3/WHO 2008~
 
 [Format=ICDO-3_grouping01]
 1=1. All sites~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'
-
-[MergedVar=ICDO-3_grouping07]
-1={main.Site recode ICD-O-3/WHO 2008} = 11-13,15-23,25-27,29-36
-
-[Format=ICDO-3_grouping07]
-1=7. Digestive~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Digestive System','    Esophagus','    Stomach','    Small Intestine','    Colon and Rectum','      Colon excluding Rectum','        Cecum','        Appendix','        Ascending Colon','        Hepatic Flexure','        Transverse Colon','        Splenic Flexure','        Descending Colon','        Sigmoid Colon','        Large Intestine, NOS','      Rectum and Rectosigmoid Junction','        Rectosigmoid Junction','        Rectum','    Anus, Anal Canal and Anorectum','    Liver and Intrahepatic Bile Duct','      Liver','      Intrahepatic Bile Duct','    Gallbladder','    Other Biliary','    Pancreas','    Retroperitoneum','    Peritoneum, Omentum and Mesentery','    Other Digestive Organs'
 
 [MergedVar=ICDO-3_grouping22]
 1={main.Site recode ICD-O-3/WHO 2008} = 58-61
@@ -1011,4 +999,32 @@ ICDO-3_grouping05=Site recode ICD-O-3/WHO 2008~
 5=ovary~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Ovary'
 6=vagina~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Vagina'
 7=vulva~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Vulva'
+
+[MergedVar=ICDO-3_grouping07]
+1={main.Site recode ICD-O-3/WHO 2008} = 11-13,15-23,25-27,29-36
+2={main.Site recode ICD-O-3/WHO 2008} = 11
+3={main.Site recode ICD-O-3/WHO 2008} = 12
+4={main.Site recode ICD-O-3/WHO 2008} = 15-23,25-26
+5={main.Site recode ICD-O-3/WHO 2008} = 25-26
+6={main.Site recode ICD-O-3/WHO 2008} = 26
+7={main.Site recode ICD-O-3/WHO 2008} = 27
+8={main.Site recode ICD-O-3/WHO 2008} = 31
+9={main.Site recode ICD-O-3/WHO 2008} = 33
+
+[Format=ICDO-3_grouping07]
+1=7. Digestive~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Digestive System'
+2=esophagus~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Esophagus'
+3=stomach~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Stomach'
+4=colon_rectum~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Colon and Rectum'
+5=rectum_junc~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '      Rectum and Rectosigmoid Junction'
+6=rectum~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '        Rectum'
+7=anus~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Anus, Anal Canal and Anorectum'
+8=gallbladder~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Gallbladder'
+9=pancreas~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Pancreas'
+
+[MergedVar=ICDO-3_grouping14]
+1={main.Site recode ICD-O-3/WHO 2008} = 86
+
+[Format=ICDO-3_grouping14]
+1=14. Misc~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Miscellaneous'
 
