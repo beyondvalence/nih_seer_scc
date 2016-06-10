@@ -6,6 +6,25 @@ race1=I
 sex_new=I
 year=I
 State-county-noAK-HI=I
+ICD-O-3/WHO -skinleuklymph=I
+ICDO-3_grouping1=I
+ICDO-3_grouping2=I
+ICDO-3_grouping4=I
+ICDO-3_grouping5=I
+ICDO-3_grouping7=I
+ICDO-3_grouping14=I
+ICDO-3_grouping20=I
+ICDO-3_grouping02=I
+ICDO-3_grouping01=I
+ICDO-3_grouping04=I
+ICDO-3_grouping05=I
+ICDO-3_grouping07=I
+ICDO-3_grouping22=I
+ICDO-3_grouping32=I
+ICDO-3_grouping37=I
+ICDO-3_grouping39=I
+ICDO-3_grouping43=I
+ICDO-3_grouping47=I
 
 [FormatEditableByUser]
 ICDO-3_grouping48=true
@@ -15,6 +34,25 @@ race1=true
 sex_new=true
 year=true
 State-county-noAK-HI=true
+ICD-O-3/WHO -skinleuklymph=true
+ICDO-3_grouping1=true
+ICDO-3_grouping2=true
+ICDO-3_grouping4=true
+ICDO-3_grouping5=true
+ICDO-3_grouping7=true
+ICDO-3_grouping14=true
+ICDO-3_grouping20=true
+ICDO-3_grouping02=true
+ICDO-3_grouping01=true
+ICDO-3_grouping04=true
+ICDO-3_grouping05=true
+ICDO-3_grouping07=true
+ICDO-3_grouping22=true
+ICDO-3_grouping32=true
+ICDO-3_grouping37=true
+ICDO-3_grouping39=true
+ICDO-3_grouping43=true
+ICDO-3_grouping47=true
 
 [FormatCaseSensitivity]
 ICDO-3_grouping48=true
@@ -24,6 +62,25 @@ race1=true
 sex_new=true
 year=true
 State-county-noAK-HI=true
+ICD-O-3/WHO -skinleuklymph=true
+ICDO-3_grouping1=true
+ICDO-3_grouping2=true
+ICDO-3_grouping4=true
+ICDO-3_grouping5=true
+ICDO-3_grouping7=true
+ICDO-3_grouping14=true
+ICDO-3_grouping20=true
+ICDO-3_grouping02=true
+ICDO-3_grouping01=true
+ICDO-3_grouping04=true
+ICDO-3_grouping05=true
+ICDO-3_grouping07=true
+ICDO-3_grouping22=true
+ICDO-3_grouping32=true
+ICDO-3_grouping37=true
+ICDO-3_grouping39=true
+ICDO-3_grouping43=true
+ICDO-3_grouping47=true
 
 [Field Links]
 agecat=Age recode with <1 year olds~
@@ -31,8 +88,22 @@ race1=Origin recode NHIA (Hispanic, Non-Hisp)~Race recode (W, B, AI, API)
 sex_new=Sex~
 year=Year of diagnosis~
 ICDO-3new=Site recode ICD-O-3/WHO 2008~ICD-O-3 Hist/behav, malignant
-ICDO-3_grouping48=Site recode ICD-O-3/WHO 2008~
 State-county-noAK-HI=State-county
+ICD-O-3/WHO -skinleuklymph=Site recode ICD-O-3/WHO 2008
+ICDO-3_grouping14=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping20=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping02=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping01=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping04=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping05=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping07=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping22=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping32=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping37=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping39=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping43=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping47=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping48=Site recode ICD-O-3/WHO 2008~
 
 [MergedVar=agecat]
 1={main.Age recode with <1 year olds} = 0-10
@@ -79,36 +150,6 @@ State-county-noAK-HI=State-county
 [Format=ICDO-3new]
 1=all_scc~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'~AND {Site and Morphology.ICD-O-3 Hist/behav, malignant} = '8070/3: Squamous cell carcinoma, NOS','8071/3: Squamous cell carcinoma, keratinizing, NOS','8072/3: Squamous cell carcinoma, large cell, nonkeratinizing, NOS','8073/3: Squamous cell carcinoma, small cell, nonkeratinizing','8074/3: Squamous cell carcinoma, spindle cell','8075/3: Squamous cell carcinoma, adenoid','8076/3: Squamous cell carcinoma, micro-invasive','8077/3: Squamous cell carcinoma, grade III','8078/3: Squamous cell carcinoma with horn formation'
 2=all_non~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'~AND {Site and Morphology.ICD-O-3 Hist/behav, malignant} != '8070/3: Squamous cell carcinoma, NOS','8071/3: Squamous cell carcinoma, keratinizing, NOS','8072/3: Squamous cell carcinoma, large cell, nonkeratinizing, NOS','8073/3: Squamous cell carcinoma, small cell, nonkeratinizing','8074/3: Squamous cell carcinoma, spindle cell','8075/3: Squamous cell carcinoma, adenoid','8076/3: Squamous cell carcinoma, micro-invasive','8077/3: Squamous cell carcinoma, grade III','8078/3: Squamous cell carcinoma with horn formation'
-
-[MergedVar=ICDO-3_grouping48]
-1={main.Site recode ICD-O-3/WHO 2008} != 44-45,68-69,71-78,80,83,85,87-89
-2={main.Site recode ICD-O-3/WHO 2008} = 37-41
-3={main.Site recode ICD-O-3/WHO 2008} = 1-10
-4={main.Site recode ICD-O-3/WHO 2008} = 47-53
-5={main.Site recode ICD-O-3/WHO 2008} = 11-13,15-23,25-27,29-36
-6={main.Site recode ICD-O-3/WHO 2008} = 86
-7={main.Site recode ICD-O-3/WHO 2008} = 54-57
-8={main.Site recode ICD-O-3/WHO 2008} = 58-61
-9={main.Site recode ICD-O-3/WHO 2008} = 62
-10={main.Site recode ICD-O-3/WHO 2008} = 46
-11={main.Site recode ICD-O-3/WHO 2008} = 65-66
-12={main.Site recode ICD-O-3/WHO 2008} = 43
-13={main.Site recode ICD-O-3/WHO 2008} = 42
-
-[Format=ICDO-3_grouping48]
-1=1. All sites~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'
-2=2. Respiratory system~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Respiratory System'
-3=4. Oral cavity and pharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Oral Cavity and Pharynx'
-4=5. Female genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Female Genital System'
-5=7. Digestive~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Digestive System'
-6=14. Misc~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Miscellaneous'
-7=20. Male genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Male Genital System'
-8=22. Urinary sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Urinary System'
-9=32. Eye and orbit~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Eye and Orbit'
-10=37. Breast~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Breast'
-11=39. Endocrine sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Endocrine System'
-12=43. Soft tissue inc heart~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Soft Tissue including Heart'
-13=47. Bones and joints~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Bones and Joints'
 
 [Format=State-county-noAK-HI]
 6001="  CA: Alameda County (06001)"
@@ -718,4 +759,214 @@ State-county-noAK-HI=State-county
 53061="  WA: Snohomish County (53061)"
 53067="  WA: Thurston County (53067)"
 53073="  WA: Whatcom County (53073)"
+
+[Format=ICD-O-3/WHO -skinleuklymph]
+1-13,15-23,25-27,29-66,68-69,71-77,80,78,89,83,85,87-88,86=All Sites
+1-10="  Oral Cavity and Pharynx"
+1="    Lip"
+2="    Tongue"
+3="    Salivary Gland"
+4="    Floor of Mouth"
+5="    Gum and Other Mouth"
+6="    Nasopharynx"
+7="    Tonsil"
+8="    Oropharynx"
+9="    Hypopharynx"
+10="    Other Oral Cavity and Pharynx"
+11-13,15-23,25-27,29-36="  Digestive System"
+11="    Esophagus"
+12="    Stomach"
+13="    Small Intestine"
+15-23,25-26="    Colon and Rectum"
+15-23="      Colon excluding Rectum"
+15="        Cecum"
+16="        Appendix"
+17="        Ascending Colon"
+18="        Hepatic Flexure"
+19="        Transverse Colon"
+20="        Splenic Flexure"
+21="        Descending Colon"
+22="        Sigmoid Colon"
+23="        Large Intestine, NOS"
+25-26="      Rectum and Rectosigmoid Junction"
+25="        Rectosigmoid Junction"
+26="        Rectum"
+27="    Anus, Anal Canal and Anorectum"
+29-30="    Liver and Intrahepatic Bile Duct"
+29="      Liver"
+30="      Intrahepatic Bile Duct"
+31="    Gallbladder"
+32="    Other Biliary"
+33="    Pancreas"
+34="    Retroperitoneum"
+35="    Peritoneum, Omentum and Mesentery"
+36="    Other Digestive Organs"
+37-41="  Respiratory System"
+37="    Nose, Nasal Cavity and Middle Ear"
+38="    Larynx"
+39="    Lung and Bronchus"
+40="    Pleura"
+41="    Trachea, Mediastinum and Other Respiratory Organs"
+42="  Bones and Joints"
+43="  Soft Tissue including Heart"
+46="  Breast"
+47-53="  Female Genital System"
+47="    Cervix Uteri"
+48-49="    Corpus and Uterus, NOS"
+48="      Corpus Uteri"
+49="      Uterus, NOS"
+50="    Ovary"
+51="    Vagina"
+52="    Vulva"
+53="    Other Female Genital Organs"
+54-57="  Male Genital System"
+54="    Prostate"
+55="    Testis"
+56="    Penis"
+57="    Other Male Genital Organs"
+58-61="  Urinary System"
+58="    Urinary Bladder"
+59="    Kidney and Renal Pelvis"
+60="    Ureter"
+61="    Other Urinary Organs"
+62="  Eye and Orbit"
+63-64="  Brain and Other Nervous System"
+63="    Brain"
+64="    Cranial Nerves Other Nervous System"
+65-66="  Endocrine System"
+65="    Thyroid"
+66="    Other Endocrine including Thymus"
+86="  Miscellaneous"
+
+[MergedVar=ICDO-3_grouping14]
+1={main.Site recode ICD-O-3/WHO 2008} = 86
+
+[Format=ICDO-3_grouping14]
+1=14. Misc~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Miscellaneous'
+
+[MergedVar=ICDO-3_grouping20]
+1={main.Site recode ICD-O-3/WHO 2008} = 54-57
+
+[Format=ICDO-3_grouping20]
+1=20. Male genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Male Genital System','    Prostate','    Testis','    Penis','    Other Male Genital Organs'
+
+[MergedVar=ICDO-3_grouping02]
+1={main.Site recode ICD-O-3/WHO 2008} = 37-41
+
+[Format=ICDO-3_grouping02]
+1=2. Respiratory system~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Respiratory System','    Nose, Nasal Cavity and Middle Ear','    Larynx','    Lung and Bronchus','    Pleura','    Trachea, Mediastinum and Other Respiratory Organs'
+
+[MergedVar=ICDO-3_grouping01]
+1={main.Site recode ICD-O-3/WHO 2008} != 44-45,68-69,71-78,80,83,85,87-89
+
+[Format=ICDO-3_grouping01]
+1=1. All sites~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'
+
+[MergedVar=ICDO-3_grouping04]
+1={main.Site recode ICD-O-3/WHO 2008} = 1-10
+
+[Format=ICDO-3_grouping04]
+1=4. Oral cavity and pharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Oral Cavity and Pharynx','    Lip','    Tongue','    Salivary Gland','    Floor of Mouth','    Gum and Other Mouth','    Nasopharynx','    Tonsil','    Oropharynx','    Hypopharynx','    Other Oral Cavity and Pharynx'
+
+[MergedVar=ICDO-3_grouping05]
+1={main.Site recode ICD-O-3/WHO 2008} = 47-53
+
+[Format=ICDO-3_grouping05]
+1=5. Female genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Female Genital System','    Cervix Uteri','    Corpus and Uterus, NOS','      Corpus Uteri','      Uterus, NOS','    Ovary','    Vagina','    Vulva','    Other Female Genital Organs'
+
+[MergedVar=ICDO-3_grouping07]
+1={main.Site recode ICD-O-3/WHO 2008} = 11-13,15-23,25-27,29-36
+
+[Format=ICDO-3_grouping07]
+1=7. Digestive~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Digestive System','    Esophagus','    Stomach','    Small Intestine','    Colon and Rectum','      Colon excluding Rectum','        Cecum','        Appendix','        Ascending Colon','        Hepatic Flexure','        Transverse Colon','        Splenic Flexure','        Descending Colon','        Sigmoid Colon','        Large Intestine, NOS','      Rectum and Rectosigmoid Junction','        Rectosigmoid Junction','        Rectum','    Anus, Anal Canal and Anorectum','    Liver and Intrahepatic Bile Duct','      Liver','      Intrahepatic Bile Duct','    Gallbladder','    Other Biliary','    Pancreas','    Retroperitoneum','    Peritoneum, Omentum and Mesentery','    Other Digestive Organs'
+
+[MergedVar=ICDO-3_grouping22]
+1={main.Site recode ICD-O-3/WHO 2008} = 58-61
+
+[Format=ICDO-3_grouping22]
+1=22. Urinary sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Urinary System','    Urinary Bladder','    Kidney and Renal Pelvis','    Ureter','    Other Urinary Organs'
+
+[MergedVar=ICDO-3_grouping32]
+1={main.Site recode ICD-O-3/WHO 2008} = 62
+
+[Format=ICDO-3_grouping32]
+1=32. Eye and orbit~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Eye and Orbit'
+
+[MergedVar=ICDO-3_grouping37]
+1={main.Site recode ICD-O-3/WHO 2008} != 44-45,68-69,71-78,80,83,85,87-89
+2={main.Site recode ICD-O-3/WHO 2008} = 37-41
+3={main.Site recode ICD-O-3/WHO 2008} = 1-10
+4={main.Site recode ICD-O-3/WHO 2008} = 47-53
+5={main.Site recode ICD-O-3/WHO 2008} = 11-13,15-23,25-27,29-36
+6={main.Site recode ICD-O-3/WHO 2008} = 86
+7={main.Site recode ICD-O-3/WHO 2008} = 54-57
+8={main.Site recode ICD-O-3/WHO 2008} = 58-61
+9={main.Site recode ICD-O-3/WHO 2008} = 62
+10={main.Site recode ICD-O-3/WHO 2008} = 46
+11={main.Site recode ICD-O-3/WHO 2008} = 65-66
+12={main.Site recode ICD-O-3/WHO 2008} = 43
+13={main.Site recode ICD-O-3/WHO 2008} = 42
+
+[Format=ICDO-3_grouping37]
+1=1. All sites~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'
+2=2. Respiratory system~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Respiratory System','    Nose, Nasal Cavity and Middle Ear','    Larynx','    Lung and Bronchus','    Pleura','    Trachea, Mediastinum and Other Respiratory Organs'
+3=4. Oral cavity and pharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Oral Cavity and Pharynx','    Lip','    Tongue','    Salivary Gland','    Floor of Mouth','    Gum and Other Mouth','    Nasopharynx','    Tonsil','    Oropharynx','    Hypopharynx','    Other Oral Cavity and Pharynx'
+4=5. Female genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Female Genital System','    Cervix Uteri','    Corpus and Uterus, NOS','      Corpus Uteri','      Uterus, NOS','    Ovary','    Vagina','    Vulva','    Other Female Genital Organs'
+5=7. Digestive~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Digestive System','    Esophagus','    Stomach','    Small Intestine','    Colon and Rectum','      Colon excluding Rectum','        Cecum','        Appendix','        Ascending Colon','        Hepatic Flexure','        Transverse Colon','        Splenic Flexure','        Descending Colon','        Sigmoid Colon','        Large Intestine, NOS','      Rectum and Rectosigmoid Junction','        Rectosigmoid Junction','        Rectum','    Anus, Anal Canal and Anorectum','    Liver and Intrahepatic Bile Duct','      Liver','      Intrahepatic Bile Duct','    Gallbladder','    Other Biliary','    Pancreas','    Retroperitoneum','    Peritoneum, Omentum and Mesentery','    Other Digestive Organs'
+6=14. Misc~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Miscellaneous'
+7=20. Male genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Male Genital System','    Prostate','    Testis','    Penis','    Other Male Genital Organs'
+8=22. Urinary sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Urinary System','    Urinary Bladder','    Kidney and Renal Pelvis','    Ureter','    Other Urinary Organs'
+9=32. Eye and orbit~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Eye and Orbit'
+10=37. Breast~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Breast'
+11=39. Endocrine sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Endocrine System','    Thyroid','    Other Endocrine including Thymus'
+12=43. Soft tissue inc heart~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Soft Tissue including Heart'
+13=47. Bones and joints~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Bones and Joints'
+
+[MergedVar=ICDO-3_grouping39]
+1={main.Site recode ICD-O-3/WHO 2008} = 65-66
+
+[Format=ICDO-3_grouping39]
+1=39. Endocrine sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Endocrine System','    Thyroid','    Other Endocrine including Thymus'
+
+[MergedVar=ICDO-3_grouping43]
+1={main.Site recode ICD-O-3/WHO 2008} = 43
+
+[Format=ICDO-3_grouping43]
+1=43. Soft tissue inc heart~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Soft Tissue including Heart'
+
+[MergedVar=ICDO-3_grouping47]
+1={main.Site recode ICD-O-3/WHO 2008} = 42
+
+[Format=ICDO-3_grouping47]
+1=47. Bones and joints~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Bones and Joints'
+
+[MergedVar=ICDO-3_grouping48]
+1={main.Site recode ICD-O-3/WHO 2008} != 44-45,68-69,71-78,80,83,85,87-89
+2={main.Site recode ICD-O-3/WHO 2008} = 37-41
+3={main.Site recode ICD-O-3/WHO 2008} = 1-10
+4={main.Site recode ICD-O-3/WHO 2008} = 47-53
+5={main.Site recode ICD-O-3/WHO 2008} = 11-13,15-23,25-27,29-36
+6={main.Site recode ICD-O-3/WHO 2008} = 86
+7={main.Site recode ICD-O-3/WHO 2008} = 54-57
+8={main.Site recode ICD-O-3/WHO 2008} = 58-61
+9={main.Site recode ICD-O-3/WHO 2008} = 62
+10={main.Site recode ICD-O-3/WHO 2008} = 46
+11={main.Site recode ICD-O-3/WHO 2008} = 65-66
+12={main.Site recode ICD-O-3/WHO 2008} = 43
+13={main.Site recode ICD-O-3/WHO 2008} = 42
+
+[Format=ICDO-3_grouping48]
+1=1. All sites~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'
+2=2. Respiratory system~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Respiratory System','    Nose, Nasal Cavity and Middle Ear','    Larynx','    Lung and Bronchus','    Pleura','    Trachea, Mediastinum and Other Respiratory Organs'
+3=4. Oral cavity and pharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Oral Cavity and Pharynx','    Lip','    Tongue','    Salivary Gland','    Floor of Mouth','    Gum and Other Mouth','    Nasopharynx','    Tonsil','    Oropharynx','    Hypopharynx','    Other Oral Cavity and Pharynx'
+4=5. Female genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Female Genital System','    Cervix Uteri','    Corpus and Uterus, NOS','      Corpus Uteri','      Uterus, NOS','    Ovary','    Vagina','    Vulva','    Other Female Genital Organs'
+5=7. Digestive~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Digestive System','    Esophagus','    Stomach','    Small Intestine','    Colon and Rectum','      Colon excluding Rectum','        Cecum','        Appendix','        Ascending Colon','        Hepatic Flexure','        Transverse Colon','        Splenic Flexure','        Descending Colon','        Sigmoid Colon','        Large Intestine, NOS','      Rectum and Rectosigmoid Junction','        Rectosigmoid Junction','        Rectum','    Anus, Anal Canal and Anorectum','    Liver and Intrahepatic Bile Duct','      Liver','      Intrahepatic Bile Duct','    Gallbladder','    Other Biliary','    Pancreas','    Retroperitoneum','    Peritoneum, Omentum and Mesentery','    Other Digestive Organs'
+6=14. Misc~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Miscellaneous'
+7=20. Male genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Male Genital System','    Prostate','    Testis','    Penis','    Other Male Genital Organs'
+8=22. Urinary sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Urinary System','    Urinary Bladder','    Kidney and Renal Pelvis','    Ureter','    Other Urinary Organs'
+9=32. Eye and orbit~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Eye and Orbit'
+10=37. Breast~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Breast'
+11=39. Endocrine sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Endocrine System','    Thyroid','    Other Endocrine including Thymus'
+12=43. Soft tissue inc heart~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Soft Tissue including Heart'
+13=47. Bones and joints~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Bones and Joints'
 
