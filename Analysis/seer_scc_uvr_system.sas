@@ -42,16 +42,16 @@ run;
 
 
 
-proc glimmix data=scc_sys_uvr ;
-class   registry  Agecat male year_dx racen ;
-  model resp_non=  qyear305 Agecat male year_dx/ CL solution offset = lnpop dist=poisson;
+proc glimmix data=scc_sys_uvr order=internal;
+class   registry qyear305 agecat male year_dx ;
+  model all_scc=  qyear305 Agecat male year_dx / CL solution offset = lnpop dist=poisson;
   random int / subject = registry;
 where  racen=1 ;
 run;
 
 
 
-proc glimmix data=working1 ;
+proc glimmix data=scc_sys_uvr ;
 class     registry        Agecat male dxyr5 racen ;
   model CountCALCL =  qyear305 Agecat male dxyr5 racen qyear305*racen/ solution offset = lnpop dist=poisson;
   *random int / subject = registry;

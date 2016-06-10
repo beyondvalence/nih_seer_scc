@@ -92,10 +92,7 @@ State-county-noAK-HI=State-county
 ICD-O-3/WHO -skinleuklymph=Site recode ICD-O-3/WHO 2008
 ICDO-3_grouping14=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping20=Site recode ICD-O-3/WHO 2008~
-ICDO-3_grouping02=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping01=Site recode ICD-O-3/WHO 2008~
-ICDO-3_grouping04=Site recode ICD-O-3/WHO 2008~
-ICDO-3_grouping05=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping07=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping22=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping32=Site recode ICD-O-3/WHO 2008~
@@ -104,6 +101,9 @@ ICDO-3_grouping39=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping43=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping47=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping48=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping04=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping02=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping05=Site recode ICD-O-3/WHO 2008~
 
 [MergedVar=agecat]
 1={main.Age recode with <1 year olds} = 0-10
@@ -850,29 +850,11 @@ ICDO-3_grouping48=Site recode ICD-O-3/WHO 2008~
 [Format=ICDO-3_grouping20]
 1=20. Male genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Male Genital System','    Prostate','    Testis','    Penis','    Other Male Genital Organs'
 
-[MergedVar=ICDO-3_grouping02]
-1={main.Site recode ICD-O-3/WHO 2008} = 37-41
-
-[Format=ICDO-3_grouping02]
-1=2. Respiratory system~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Respiratory System','    Nose, Nasal Cavity and Middle Ear','    Larynx','    Lung and Bronchus','    Pleura','    Trachea, Mediastinum and Other Respiratory Organs'
-
 [MergedVar=ICDO-3_grouping01]
 1={main.Site recode ICD-O-3/WHO 2008} != 44-45,68-69,71-78,80,83,85,87-89
 
 [Format=ICDO-3_grouping01]
 1=1. All sites~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'
-
-[MergedVar=ICDO-3_grouping04]
-1={main.Site recode ICD-O-3/WHO 2008} = 1-10
-
-[Format=ICDO-3_grouping04]
-1=4. Oral cavity and pharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Oral Cavity and Pharynx','    Lip','    Tongue','    Salivary Gland','    Floor of Mouth','    Gum and Other Mouth','    Nasopharynx','    Tonsil','    Oropharynx','    Hypopharynx','    Other Oral Cavity and Pharynx'
-
-[MergedVar=ICDO-3_grouping05]
-1={main.Site recode ICD-O-3/WHO 2008} = 47-53
-
-[Format=ICDO-3_grouping05]
-1=5. Female genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Female Genital System','    Cervix Uteri','    Corpus and Uterus, NOS','      Corpus Uteri','      Uterus, NOS','    Ovary','    Vagina','    Vulva','    Other Female Genital Organs'
 
 [MergedVar=ICDO-3_grouping07]
 1={main.Site recode ICD-O-3/WHO 2008} = 11-13,15-23,25-27,29-36
@@ -969,4 +951,64 @@ ICDO-3_grouping48=Site recode ICD-O-3/WHO 2008~
 11=39. Endocrine sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Endocrine System','    Thyroid','    Other Endocrine including Thymus'
 12=43. Soft tissue inc heart~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Soft Tissue including Heart'
 13=47. Bones and joints~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Bones and Joints'
+
+[MergedVar=ICDO-3_grouping04]
+1={main.Site recode ICD-O-3/WHO 2008} = 1-10
+2={main.Site recode ICD-O-3/WHO 2008} = 1
+3={main.Site recode ICD-O-3/WHO 2008} = 2
+4={main.Site recode ICD-O-3/WHO 2008} = 3
+5={main.Site recode ICD-O-3/WHO 2008} = 4
+6={main.Site recode ICD-O-3/WHO 2008} = 5
+7={main.Site recode ICD-O-3/WHO 2008} = 6
+8={main.Site recode ICD-O-3/WHO 2008} = 7
+9={main.Site recode ICD-O-3/WHO 2008} = 8
+10={main.Site recode ICD-O-3/WHO 2008} = 9
+11={main.Site recode ICD-O-3/WHO 2008} = 10
+
+[Format=ICDO-3_grouping04]
+1=4. Oral cavity and pharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Oral Cavity and Pharynx'
+2=lip~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Lip'
+3=tongue~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Tongue'
+4=salivary~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Salivary Gland'
+5=floor~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Floor of Mouth'
+6=gum~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Gum and Other Mouth'
+7=nasopharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Nasopharynx'
+8=tonsil~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Tonsil'
+9=oropharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Oropharynx'
+10=hypopharynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Hypopharynx'
+11=other~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Other Oral Cavity and Pharynx'
+
+[MergedVar=ICDO-3_grouping02]
+1={main.Site recode ICD-O-3/WHO 2008} = 37-41
+2={main.Site recode ICD-O-3/WHO 2008} = 37
+3={main.Site recode ICD-O-3/WHO 2008} = 38
+4={main.Site recode ICD-O-3/WHO 2008} = 39
+5={main.Site recode ICD-O-3/WHO 2008} = 40
+6={main.Site recode ICD-O-3/WHO 2008} = 41
+
+[Format=ICDO-3_grouping02]
+1=2. Respiratory system~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Respiratory System'
+2=nose~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Nose, Nasal Cavity and Middle Ear'
+3=larynx~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Larynx'
+4=lung~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Lung and Bronchus'
+5=pleura~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Pleura'
+6=trachea~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Trachea, Mediastinum and Other Respiratory Organs'
+
+[MergedVar=ICDO-3_grouping05]
+1={main.Site recode ICD-O-3/WHO 2008} = 47-53
+2={main.Site recode ICD-O-3/WHO 2008} = 47
+3={main.Site recode ICD-O-3/WHO 2008} = 48-49
+4={main.Site recode ICD-O-3/WHO 2008} = 48
+5={main.Site recode ICD-O-3/WHO 2008} = 50
+6={main.Site recode ICD-O-3/WHO 2008} = 51
+7={main.Site recode ICD-O-3/WHO 2008} = 52
+
+[Format=ICDO-3_grouping05]
+1=5. Female genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Female Genital System'
+2=cervix~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Cervix Uteri'
+3=corpus_uterus_nos~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Corpus and Uterus, NOS'
+4=corpus_uteri~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '      Corpus Uteri'
+5=ovary~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Ovary'
+6=vagina~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Vagina'
+7=vulva~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Vulva'
 
