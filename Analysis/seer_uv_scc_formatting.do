@@ -2,6 +2,7 @@
 *** SEER UVR SCC        ***
 *** Format datasets     ***
 *** Created 20160609THU ***
+*** Updated 20160610FRI ***
 ***************************
 *set memory 1g
 *set more off
