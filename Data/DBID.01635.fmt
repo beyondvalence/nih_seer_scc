@@ -90,9 +90,7 @@ year=Year of diagnosis~
 ICDO-3new=Site recode ICD-O-3/WHO 2008~ICD-O-3 Hist/behav, malignant
 State-county-noAK-HI=State-county
 ICD-O-3/WHO -skinleuklymph=Site recode ICD-O-3/WHO 2008
-ICDO-3_grouping20=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping01=Site recode ICD-O-3/WHO 2008~
-ICDO-3_grouping22=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping32=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping37=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping39=Site recode ICD-O-3/WHO 2008~
@@ -104,6 +102,8 @@ ICDO-3_grouping02=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping05=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping07=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping14=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping20=Site recode ICD-O-3/WHO 2008~
+ICDO-3_grouping22=Site recode ICD-O-3/WHO 2008~
 
 [MergedVar=agecat]
 1={main.Age recode with <1 year olds} = 0-10
@@ -838,23 +838,11 @@ ICDO-3_grouping14=Site recode ICD-O-3/WHO 2008~
 66="    Other Endocrine including Thymus"
 86="  Miscellaneous"
 
-[MergedVar=ICDO-3_grouping20]
-1={main.Site recode ICD-O-3/WHO 2008} = 54-57
-
-[Format=ICDO-3_grouping20]
-1=20. Male genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Male Genital System','    Prostate','    Testis','    Penis','    Other Male Genital Organs'
-
 [MergedVar=ICDO-3_grouping01]
 1={main.Site recode ICD-O-3/WHO 2008} != 44-45,68-69,71-78,80,83,85,87-89
 
 [Format=ICDO-3_grouping01]
 1=1. All sites~{Site and Morphology.Site recode ICD-O-3/WHO 2008} != '  Skin excluding Basal and Squamous','    Melanoma of the Skin','    Other Non-Epithelial Skin','  Lymphoma','    Hodgkin Lymphoma','      Hodgkin - Nodal','      Hodgkin - Extranodal','    Non-Hodgkin Lymphoma','      NHL - Nodal','      NHL - Extranodal','  Myeloma','  Leukemia','    Lymphocytic Leukemia','      Acute Lymphocytic Leukemia','      Chronic Lymphocytic Leukemia','      Other Lymphocytic Leukemia','    Myeloid and Monocytic Leukemia','      Acute Myeloid Leukemia','      Acute Monocytic Leukemia','      Chronic Myeloid Leukemia','      Other Myeloid/Monocytic Leukemia','    Other Leukemia','      Other Acute Leukemia','      Aleukemic, Subleukemic and NOS','  Mesothelioma','  Kaposi Sarcoma'
-
-[MergedVar=ICDO-3_grouping22]
-1={main.Site recode ICD-O-3/WHO 2008} = 58-61
-
-[Format=ICDO-3_grouping22]
-1=22. Urinary sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Urinary System','    Urinary Bladder','    Kidney and Renal Pelvis','    Ureter','    Other Urinary Organs'
 
 [MergedVar=ICDO-3_grouping32]
 1={main.Site recode ICD-O-3/WHO 2008} = 62
@@ -1027,4 +1015,26 @@ ICDO-3_grouping14=Site recode ICD-O-3/WHO 2008~
 
 [Format=ICDO-3_grouping14]
 1=14. Misc~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Miscellaneous'
+
+[MergedVar=ICDO-3_grouping20]
+1={main.Site recode ICD-O-3/WHO 2008} = 54-57
+2={main.Site recode ICD-O-3/WHO 2008} = 56
+3={main.Site recode ICD-O-3/WHO 2008} = 57
+
+[Format=ICDO-3_grouping20]
+1=20. Male genital sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Male Genital System'
+2=penis~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Penis'
+3=male_other~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Other Male Genital Organs'
+
+[MergedVar=ICDO-3_grouping22]
+1={main.Site recode ICD-O-3/WHO 2008} = 58-61
+2={main.Site recode ICD-O-3/WHO 2008} = 58
+3={main.Site recode ICD-O-3/WHO 2008} = 59
+4={main.Site recode ICD-O-3/WHO 2008} = 61
+
+[Format=ICDO-3_grouping22]
+1=22. Urinary sys~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Urinary System'
+2=bladder~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Urinary Bladder'
+3=kidney~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Kidney and Renal Pelvis'
+4=other~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '    Other Urinary Organs'
 
