@@ -90,11 +90,11 @@ replace state = trim(substr(county,1,splitcounty - 1))
 tab state
 drop splitcounty
 
-* already have racen variable due to seerstat page by race
-*gen racen=1 if race=="nhw" /* non Hispanic white */
-*replace racen=2 if race=="hw" /*  Hispanic white */
-*replace racen=3 if race=="b" /* black */
-*tab race racen
+
+gen racen=1 if race=="nhw" /* non Hispanic white */
+replace racen=2 if race=="hw" /*  Hispanic white */
+replace racen=3 if race=="b" /* black */
+tab race racen
 
 save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", replace
 tab fips
@@ -270,12 +270,12 @@ oral_scc oral_non ///
 	oral_tonsil_scc oral_tonsil_non oral_oropharynx_scc oral_oropharynx_non  ///
 	oral_hypopharynx_scc oral_hypopharynx_non oral_other_scc oral_other_non ///
 fema_scc fema_non ///
-	fema_cervix_scc fema_cervix_non fema_corpusUterusNOS_scc fema_corpusUterusNOS_non  ///
-	fema_corpusUteri_scc fema_corpusUteri_non fema_ovary_scc fema_ovary_non  ///
+	fema_cervix_scc fema_cervix_non fema_corpusuterusnos_scc fema_corpusuterusnos_non  ///
+	fema_corpusuteri_scc fema_corpusuteri_non fema_ovary_scc fema_ovary_non  ///
 	fema_vagina_scc fema_vagina_non fema_vulva_scc fema_vulva_non ///
 dige_scc dige_non ///
-	dige_esophagus_scc dige_esophagus_non dige_stomach_scc dige_stomach_non dige_colonRectum_scc dige_colonRectum_non /// 
-	dige_rectumJunc_scc dige_rectumJunc_non dige_rectum_scc dige_rectum_non dige_anus_scc dige_anus_non ///
+	dige_esophagus_scc dige_esophagus_non dige_stomach_scc dige_stomach_non dige_colonrectum_scc dige_colonrectum_non /// 
+	dige_rectumjunc_scc dige_rectumjunc_non dige_rectum_scc dige_rectum_non dige_anus_scc dige_anus_non ///
 	dige_gallbladder_scc dige_gallbladder_non dige_pancreas_scc dige_pancreas_non ///
 misc_scc misc_non ///
 male_scc male_non ///
