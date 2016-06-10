@@ -19,22 +19,53 @@ save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", replace
 *append using "C:\REB\SEER_SCC\Data\scc_county_race1_counts.dta" 
 *append using "C:\REB\SEER_SCC\Data\scc_county_race2_counts.dta" 
 
-/*  variable names:
-	fema_scc
-	fema_non
-	dige_scc
-	dige_non
-	urin_scc
-	urin_non
-	brea_scc
-	brea_non
-	soft_scc
-	soft_non
-	bone_scc
-	bone_non 
+/*  import variable names:
+county year_dx sex age_dx race
+	
+all_scc all_non pop
+	
+resp_scc resp_non
+	resp_nose_scc resp_nose_non resp_larynx_scc resp_larynx_non resp_lung_scc resp_lung_non	
+	resp_pleura_scc resp_pleura_non resp_trachea_scc resp_trachea_non
+	
+oral_scc oral_non
+	oral_lip_scc oral_lip_non oral_tongue_scc oral_tongue_non oral_salivary_scc oral_salivary_non 
+	oral_floor_scc oral_floor_non oral_gum_scc oral_gum_non oral_nasopharynx_scc oral_nasopharynx_non
+	oral_tonsil_scc oral_tonsil_non oral_oropharynx_scc oral_oropharynx_non 
+	oral_hypopharynx_scc oral_hypopharynx_non oral_other_scc oral_other_non
+	
+fema_scc fema_non
+	fema_cervix_scc fema_cervix_non fema_corpusUterusNOS_scc fema_corpusUterusNOS_non 
+	fema_corpusUteri_scc fema_corpusUteri_non fema_ovary_scc fema_ovary_non 
+	fema_vagina_scc fema_vagina_non fema_vulva_scc fema_vulva_non
+	
+dige_scc dige_non
+	dige_esophagus_scc dige_esophagus_non dige_stomach_scc dige_stomach_non dige_colonRectum_scc dige_colonRectum_non 
+	dige_rectumJunc_scc dige_rectumJunc_non dige_rectum_scc dige_rectum_non dige_anus_scc dige_anus_non
+	dige_gallbladder_scc dige_gallbladder_non dige_pancreas_scc dige_pancreas_non
+	
+misc_scc misc_non
+	
+male_scc male_non
+	male_penis_scc male_penis_non male_other_scc male_other_non
+	
+urin_scc urin_non
+	urin_bladder_scc urin_bladder_non urin_kidney_scc urin_kidney_non urin_other_scc urin_other_non
+	
+eye_scc eye_non
+	
+brea_scc brea_non
+	
+endo_scc endo_non
+	endo_thyroid_scc endo_thyroid_non endo_other_scc endo_other_non
+	
+soft_scc soft_non
+	
+bone_scc bone_non
 */
 
-save "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", replace
+
+save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", replace
 describe
 
 * tabstat all_scc pop, stat(sum)
@@ -65,7 +96,7 @@ drop splitcounty
 *replace racen=3 if race=="b" /* black */
 *tab race racen
 
-save "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", replace
+save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", replace
 tab fips
 display r(r) 
 ** 607 counties
@@ -88,7 +119,7 @@ display r(r)
 * 1. All registries except Iowa (HIV free) *************************************
 ********************************************************************************
 
-use "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", clear
+use "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", clear
 sort state fips racen sex age_dx year_dx
 
 *Make registry variable
@@ -150,7 +181,7 @@ replace SEER17=1 if SEER13==1 | registry==10 | registry==6 | registry==14 | regi
 generate SEER18=0
 replace SEER18=1 if SEER17==1 | registry==13
 
-save "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", replace
+save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", replace
 
 *************************************
 ** Link in ZARIA and weather data ***
@@ -160,7 +191,7 @@ use "C:\REB\SEER_SCC\Data\nci_uv-county.dta", clear
 sort fips
 save Zaria, replace
 
-use "C:\REB\SEER_SCC\Data\scc_county_counts_system.dta", clear
+use "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", clear
 sort fips
 save SEER, replace
 
@@ -208,7 +239,7 @@ mean uvr if  qyear305==3
 mean uvr if  qyear305==4
 mean uvr if  qyear305==5
 
-save "C:\REB\SEER_SCC\Data\scc_county_counts_system_uvr.dta", replace
+save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13_uvr.dta", replace
 
 *drop objectid Join_Count TARGET_FID Join_Count_1 FIPS_OLD 
 *drop Jan305 Feb305 Mar305 Apr305 May305 Jun305 Jul305 Aug305 Sep305 Oct305 Nov305 Dec305 
@@ -226,18 +257,42 @@ save "C:\REB\SEER_SCC\Data\scc_county_counts_system_uvr.dta", replace
 
 *Collapse data by UV quintiles (based on county), maintaining registry, race, sex, age group, and year of dx 
 
-use "C:\REB\SEER_SCC\Data\scc_county_counts_system_uvr.dta", clear
+use "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13_uvr.dta", clear
 sort  registry racen male agecat year_dx qyear305
 
-collapse (sum) all_scc all_non resp_scc resp_non oral_scc oral_non fema_scc fema_non 	///
-dige_scc dige_non misc_scc misc_non male_scc male_non urin_scc urin_non eye_scc ///
-eye_non brea_scc brea_non endo_scc endo_non soft_scc soft_non bone_scc bone_non ///
-pop ///
+collapse (sum) all_scc all_non pop ///
+resp_scc resp_non ///
+	resp_nose_scc resp_nose_non resp_larynx_scc resp_larynx_non resp_lung_scc resp_lung_non	 ///
+	resp_pleura_scc resp_pleura_non resp_trachea_scc resp_trachea_non ///
+oral_scc oral_non ///
+	oral_lip_scc oral_lip_non oral_tongue_scc oral_tongue_non oral_salivary_scc oral_salivary_non  ///
+	oral_floor_scc oral_floor_non oral_gum_scc oral_gum_non oral_nasopharynx_scc oral_nasopharynx_non ///
+	oral_tonsil_scc oral_tonsil_non oral_oropharynx_scc oral_oropharynx_non  ///
+	oral_hypopharynx_scc oral_hypopharynx_non oral_other_scc oral_other_non ///
+fema_scc fema_non ///
+	fema_cervix_scc fema_cervix_non fema_corpusUterusNOS_scc fema_corpusUterusNOS_non  ///
+	fema_corpusUteri_scc fema_corpusUteri_non fema_ovary_scc fema_ovary_non  ///
+	fema_vagina_scc fema_vagina_non fema_vulva_scc fema_vulva_non ///
+dige_scc dige_non ///
+	dige_esophagus_scc dige_esophagus_non dige_stomach_scc dige_stomach_non dige_colonRectum_scc dige_colonRectum_non /// 
+	dige_rectumJunc_scc dige_rectumJunc_non dige_rectum_scc dige_rectum_non dige_anus_scc dige_anus_non ///
+	dige_gallbladder_scc dige_gallbladder_non dige_pancreas_scc dige_pancreas_non ///
+misc_scc misc_non ///
+male_scc male_non ///
+	male_penis_scc male_penis_non male_other_scc male_other_non ///
+urin_scc urin_non ///
+	urin_bladder_scc urin_bladder_non urin_kidney_scc urin_kidney_non urin_other_scc urin_other_non ///
+eye_scc eye_non ///
+brea_scc brea_non ///
+endo_scc endo_non ///
+	endo_thyroid_scc endo_thyroid_non endo_other_scc endo_other_non ///
+soft_scc soft_non ///
+bone_scc bone_non ///
 (mean) year305, by(registry racen male agecat year_dx qyear305)
 
 gen lnpop=ln(pop)
 
-save "C:\REB\SEER_SCC\Data\scc_county_counts_system_uvr.dta", replace
+save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13_uvr.dta", replace
 
 tab registry qyear305
 tabstat all_scc all_non, stat(sum)
