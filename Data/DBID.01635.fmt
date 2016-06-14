@@ -83,7 +83,6 @@ ICDO-3_grouping43=true
 ICDO-3_grouping47=true
 
 [Field Links]
-agecat=Age recode with <1 year olds~
 race1=Origin recode NHIA (Hispanic, Non-Hisp)~Race recode (W, B, AI, API)
 sex_new=Sex~
 year=Year of diagnosis~
@@ -104,16 +103,7 @@ ICDO-3_grouping37=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping39=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping43=Site recode ICD-O-3/WHO 2008~
 ICDO-3_grouping47=Site recode ICD-O-3/WHO 2008~
-
-[MergedVar=agecat]
-1={main.Age recode with <1 year olds} = 0-10
-2={main.Age recode with <1 year olds} = 10-13
-3={main.Age recode with <1 year olds} = 14-18
-
-[Format=agecat]
-1=0-44~{Age at Diagnosis.Age recode with <1 year olds} = '00 years','01-04 years','05-09 years','10-14 years','15-19 years','20-24 years','25-29 years','30-34 years','35-39 years','40-44 years','45-49 years'
-2=45-64~{Age at Diagnosis.Age recode with <1 year olds} = '45-49 years','50-54 years','55-59 years','60-64 years'
-3=65+~{Age at Diagnosis.Age recode with <1 year olds} = '65-69 years','70-74 years','75-79 years','80-84 years','85+ years'
+agecat=Age recode with <1 year olds~
 
 [MergedVar=race1]
 1={main.Origin recode NHIA (Hispanic, Non-Hisp)} = 0~AND {main.Race recode (W, B, AI, API)} = 1
@@ -1017,4 +1007,14 @@ ICDO-3_grouping47=Site recode ICD-O-3/WHO 2008~
 
 [Format=ICDO-3_grouping47]
 1=47. Bones and joints~{Site and Morphology.Site recode ICD-O-3/WHO 2008} = '  Bones and Joints'
+
+[MergedVar=agecat]
+1={main.Age recode with <1 year olds} = 0-10
+2={main.Age recode with <1 year olds} = 10-13
+3={main.Age recode with <1 year olds} = 14-17
+
+[Format=agecat]
+1=0-44~{Age at Diagnosis.Age recode with <1 year olds} = '00 years','01-04 years','05-09 years','10-14 years','15-19 years','20-24 years','25-29 years','30-34 years','35-39 years','40-44 years','45-49 years'
+2=45-64~{Age at Diagnosis.Age recode with <1 year olds} = '45-49 years','50-54 years','55-59 years','60-64 years'
+3=65-84~{Age at Diagnosis.Age recode with <1 year olds} = '65-69 years','70-74 years','75-79 years','80-84 years'
 
