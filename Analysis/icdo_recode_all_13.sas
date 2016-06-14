@@ -1,14 +1,14 @@
 ******************************************************;
 ** SEER SCC UVR 									**;
 ** created Friday June 10, 2016						**;
-**													**;
+** updated 20160614TUE       						**;
 ******************************************************;
 
 libname datapath 'C:\REB\SEER_SCC\Data\SAS\' ;
 
 /*libname xptfile xport 'C:\REB\SEER_SCC\Data\SAS\icdo_recode_all_13.xpt' ;
 
-proc copy in = xptfile out = datapath ;*/
+proc copy in = xptfile out = datapath; run;*/
 
 proc format library = work ;
     value RACEL
@@ -35,9 +35,9 @@ proc format library = work ;
           16 = 'NM' ;
 
     value AGECATL
-           1 = '0-44'
-           2 = '45-64'
-           3 = '65+' ;
+           0 = '0-44'
+           1 = '45-64'
+           2 = '65-84' ;
 run;
 
 /*  variable names:
