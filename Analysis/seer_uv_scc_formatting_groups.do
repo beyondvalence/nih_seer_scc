@@ -2,7 +2,7 @@
 *** SEER UVR SCC        ***
 *** Format datasets     ***
 *** Created 20160609THU ***
-*** Updated 20160610FRI ***
+*** Updated 20160614TUE ***
 ***************************
 *set memory 1g
 set more off
@@ -12,8 +12,8 @@ set more off
 **
 ****************************************************************
 
-import delimited "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.csv", delimiter(comma) rowrange(1) clear 
-save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", replace
+import delimited "C:\REB\SEER_SCC\Data\20160614TUE\groups\icdo_recode_all_13.csv", delimiter(comma) rowrange(1) clear 
+save "C:\REB\SEER_SCC\Data\20160614TUE\groups\icdo_recode_all_13.dta", replace
 
 * if files too large or extra pages, use below append:
 *append using "C:\REB\SEER_SCC\Data\scc_county_race1_counts.dta" 
@@ -65,7 +65,7 @@ bone_scc bone_non
 */
 
 
-save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", replace
+save "C:\REB\SEER_SCC\Data\20160614TUE\groups\icdo_recode_all_13.dta", replace
 describe
 
 * tabstat all_scc pop, stat(sum)
@@ -96,14 +96,14 @@ replace racen=2 if race=="hw" /*  Hispanic white */
 replace racen=3 if race=="b" /* black */
 tab race racen
 
-save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", replace
+save "C:\REB\SEER_SCC\Data\20160614TUE\groups\icdo_recode_all_13.dta", replace
 tab fips
 display r(r) 
 ** 607 counties
 
 *tabstat all_scc , stat(sum) by(fips)
 
-** 20160610FRI WTL
+** 20160614TUE WTL
 ** all scc: 344115	
 * resp scc: 155012	oral scc: 92189		fema scc: 45169	
 * dige scc: 31894	misc scc: 11169		male scc: 3546	
@@ -119,7 +119,7 @@ display r(r)
 * 1. All registries except Iowa (HIV free) *************************************
 ********************************************************************************
 
-use "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", clear
+use "C:\REB\SEER_SCC\Data\20160614TUE\groups\icdo_recode_all_13.dta", clear
 sort state fips racen sex age_dx year_dx
 
 *Make registry variable
@@ -181,7 +181,7 @@ replace SEER17=1 if SEER13==1 | registry==10 | registry==6 | registry==14 | regi
 generate SEER18=0
 replace SEER18=1 if SEER17==1 | registry==13
 
-save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", replace
+save "C:\REB\SEER_SCC\Data\20160614TUE\groups\icdo_recode_all_13.dta", replace
 
 *************************************
 ** Link in ZARIA and weather data ***
@@ -191,7 +191,7 @@ use "C:\REB\SEER_SCC\Data\nci_uv-county.dta", clear
 sort fips
 save Zaria, replace
 
-use "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13.dta", clear
+use "C:\REB\SEER_SCC\Data\20160614TUE\groups\icdo_recode_all_13.dta", clear
 sort fips
 save SEER, replace
 
@@ -239,7 +239,7 @@ mean uvr if  qyear305==3
 mean uvr if  qyear305==4
 mean uvr if  qyear305==5
 
-save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13_uvr.dta", replace
+save "C:\REB\SEER_SCC\Data\20160614TUE\groups\icdo_recode_all_13_uvr.dta", replace
 
 *drop objectid Join_Count TARGET_FID Join_Count_1 FIPS_OLD 
 *drop Jan305 Feb305 Mar305 Apr305 May305 Jun305 Jul305 Aug305 Sep305 Oct305 Nov305 Dec305 
@@ -257,7 +257,7 @@ save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13_uvr.dta", repla
 
 *Collapse data by UV quintiles (based on county), maintaining registry, race, sex, age group, and year of dx 
 
-use "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13_uvr.dta", clear
+use "C:\REB\SEER_SCC\Data\20160614TUE\groups\icdo_recode_all_13_uvr.dta", clear
 sort  registry racen male agecat year_dx qyear305
 
 collapse (sum) all_scc all_non pop ///
@@ -292,7 +292,7 @@ bone_scc bone_non ///
 
 gen lnpop=ln(pop)
 
-save "C:\REB\SEER_SCC\Data\20160610FRI\groups\icdo_recode_all_13_uvr.dta", replace
+save "C:\REB\SEER_SCC\Data\20160614TUE\groups\icdo_recode_all_13_uvr.dta", replace
 
 tab registry qyear305
 tabstat all_scc all_non, stat(sum)
